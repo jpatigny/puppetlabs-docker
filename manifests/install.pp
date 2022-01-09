@@ -93,7 +93,7 @@ class docker::install(
       } else {
         if $ensure == 'absent' {
           exec { 'remove-docker-package':
-            command   => template('docker/windows/remove_docker.ps1.erb'),
+            command   => template('docker/windows/mirantis.ps1.erb'),
             provider  => powershell,
             unless    => template('docker/windows/check_docker.ps1.erb'),
             logoutput => true,
@@ -109,9 +109,9 @@ class docker::install(
             }
           } else {
             exec { 'install-docker-package':
-              command   => template('docker/windows/install_powershell_provider.ps1.erb'),
+              command   => template('docker/windows/mirantis.ps1.erb'),
               provider  => powershell,
-              unless    => template('docker/windows/check_powershell_provider.ps1.erb'),
+              unless    => template('docker/windows/check_docker.ps1.erb'),
               logoutput => true,
               notify    => Exec['service-restart-on-failure'],
             }

@@ -474,11 +474,6 @@ class docker(
   Optional[Boolean]                       $service_hasrestart                = $docker::params::service_hasrestart,
   Optional[Variant[String,Array]]         $registry_mirror                   = $docker::params::registry_mirror,
   Boolean                                 $acknowledge_unsupported_os        = false,
-
-  # Windows specific parameters
-  Optional[String]                        $docker_msft_provider_version      = $docker::params::docker_msft_provider_version,
-  Optional[String]                        $nuget_package_provider_version    = $docker::params::nuget_package_provider_version,
-
   Boolean                                 $have_systemd_v230                 = $docker::params::have_systemd_v230,
 ) inherits docker::params {
   if $facts['os']['family'] and ! $acknowledge_unsupported_os {
